@@ -33,41 +33,38 @@ docker network rm employee-net
 
 -----Docker-Compose-----
 Step1: Run docker-compose
-docker-compose -f docker/docker-compose.yml up -d
+docker-compose -f bin/docker-compose.yml up -d
 
 Step2: Check endpoints
 http://localhost:8080/employees
 http://localhost:8080/log
 
 Step3: Stop docker-compose
-docker-compose -f docker/docker-compose.yml down --volumes
+docker-compose -f bin/docker-compose.yml down --volumes
 
 -----Kubernetes-----
-Step1: Build employee-app image
-minikube image build -t employee-app:1.0.0 docker/
-
-Step2: To run kubernetes
-kubectl apply -f kubernetes/secret.yaml
-kubectl apply -f kubernetes/configmap.yaml
-kubectl apply -f kubernetes/employee-db.yaml
-kubectl apply -f kubernetes/employee-app.yaml
+Step1: To run kubernetes
+kubectl apply -f bin/kubernetes/secret.yaml
+kubectl apply -f bin/kubernetes/configmap.yaml
+kubectl apply -f bin/kubernetes/employee-db.yaml
+kubectl apply -f bin/kubernetes/employee-app.yaml
 watch kubectl get all
 
-Step3: Check endpoints
+Step2: Check endpoints
 minikube service employee-app-service --url
 http://127.0.0.1:45297/employees
 http://127.0.0.1:45297/log
 
-Step4: To stop kubernetes
-kubectl delete -f kubernetes/secret.yaml
-kubectl delete -f kubernetes/configmap.yaml
-kubectl delete -f kubernetes/employee-db.yaml
-kubectl delete -f kubernetes/employee-app.yaml
+Step3: To stop kubernetes
+kubectl delete -f bin/kubernetes/secret.yaml
+kubectl delete -f bin/kubernetes/configmap.yaml
+kubectl delete -f bin/kubernetes/employee-db.yaml
+kubectl delete -f bin/kubernetes/employee-app.yaml
 watch kubectl get all
 
 -----Helm-----
 Step1: To deploy helm chart
-helm install employee-chart helm/
+helm install employee-chart bin/helm/
 
 Step2: Check endpoints
 kubectl port-forward service/employee-app-service 8080:8080
