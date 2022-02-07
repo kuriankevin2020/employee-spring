@@ -8,7 +8,7 @@ networks:
 
 services:
   employee-app:
-    image: employee-app:1.0.0
+    image: kuriankevin20/employee-app:1.0.0
     environment:
       - DB_HOST=employee-db
     ports:

@@ -14,10 +14,10 @@ Step3: Build employee-spring project
 mvn clean install
 
 Step4: Copy employee-spring-1.0.0.jar
-cp target/employee-spring-1.0.0.jar docker/
+cp target/employee-spring-1.0.0.jar bin/
 
 Step5: Build employee-app image
-docker image build -t employee-app:1.0.0 docker/
+sh build.sh
 
 Step6: Run employee-app
 docker run --rm -d --name employee-app -p 8080:8080 -e DB_HOST=employee-db --network employee-net employee-app:1.0.0

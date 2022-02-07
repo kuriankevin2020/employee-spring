@@ -17,7 +17,7 @@ employeeDbDeployment:
   app: employee-db
   replicas: 1
   containerName: employee-db
-  containerImage: docker.io/library/mysql:8.0.27
+  containerImage: mysql:8.0.27
   containerPort: 3306
 
 employeeDbService:
@@ -32,7 +32,7 @@ employeeAppDeployment:
   app: employee-app
   replicas: 2
   containerName: employee-app
-  containerImage: docker.io/library/employee-app:1.0.0
+  containerImage: kuriankevin20/employee-app:1.0.0
   containerPort: 8080
   envDbHost: *dbhost
 
