@@ -9,7 +9,7 @@ This application uses *spring-data-jpa* and *spring-data-rest* to provide the ab
 <br>
 > **Note:** All commands should be run from *<local_path>/employee-spring*
 
-##Docker
+## Docker
 1. Create docker network *employee-net* <br/>
 `docker network create employee-net`
 2. Run db container *employee-db* <br/>
@@ -32,7 +32,7 @@ This application uses *spring-data-jpa* and *spring-data-rest* to provide the ab
 `docker stop employee-db` <br/>
 `docker network rm employee-net`
 
-##Docker-Compose
+## Docker-Compose
 1. Run docker-compose <br/>
 `docker-compose -f bin/docker-compose.yml up -d`
 <br/><br/>
@@ -45,7 +45,7 @@ This application uses *spring-data-jpa* and *spring-data-rest* to provide the ab
 3. Stop docker-compose <br/>
 `docker-compose -f bin/docker-compose.yml down --volumes`
 
-##Kubernetes
+## Kubernetes
 1. To run kubernetes <br/>
 `kubectl apply -f bin/kubernetes/secret.yaml` <br/>
 `kubectl apply -f bin/kubernetes/configmap.yaml` <br/>
@@ -68,7 +68,7 @@ This application uses *spring-data-jpa* and *spring-data-rest* to provide the ab
 `kubectl delete -f bin/kubernetes/employee-app.yaml` <br/>
 `watch kubectl get all`
 
-##Helm
+## Helm
 1. To deploy helm chart <br/>
 `helm install employee-chart bin/helm/`
 <br/><br/>
