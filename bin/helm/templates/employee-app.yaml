@@ -15,13 +15,18 @@ spec:
         app: {{ .Values.employeeAppDeployment.app }}
     spec:
       containers:
-      - name: {{ .Values.employeeAppDeployment.containerName }}
-        image: {{ .Values.employeeAppDeployment.containerImage }}
-        ports:
-        - containerPort: {{ .Values.employeeAppDeployment.containerPort }}
-        env:
-        - name: DB_HOST
-          value: {{ .Values.employeeAppDeployment.envDbHost }}
+        - name: {{ .Values.employeeAppDeployment.containerName }}
+          image: {{ .Values.employeeAppDeployment.containerImage }}
+          ports:
+            - containerPort: {{ .Values.employeeAppDeployment.containerPort }}
+          env:
+            - name: DB_HOST
+              value: {{ .Values.employeeAppDeployment.envDbHost }}
+            - name: THIRD_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: third-message
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +35,7 @@ metadata:
 spec:
   selector:
     app: {{ .Values.employeeAppService.app }}
-  type: {{ .Values.employeeAppService.type }}  
+  type: {{ .Values.employeeAppService.type }}
   ports:
     - protocol: {{ .Values.employeeAppService.protocol }}
       port: {{ .Values.employeeAppService.port }}

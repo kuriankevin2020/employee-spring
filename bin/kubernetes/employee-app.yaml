@@ -15,13 +15,18 @@ spec:
         app: employee-app
     spec:
       containers:
-      - name: employee-app
-        image: kuriankevin20/employee-app:1.0.0
-        ports:
-        - containerPort: 8080
-        env:
-        - name: DB_HOST
-          value: employee-db-service
+        - name: employee-app
+          image: quay.io/mimphiz2020/employee-app:1.0.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: employee-db-service
+            - name: THIRD_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: employee-configmap
+                  key: third-message
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +35,7 @@ metadata:
 spec:
   selector:
     app: employee-app
-  type: LoadBalancer  
+  type: LoadBalancer
   ports:
     - protocol: TCP
       port: 8080

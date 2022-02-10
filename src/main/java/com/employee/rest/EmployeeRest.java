@@ -7,11 +7,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeRest {
 
-    @Value("${com.employee.log}")
-    private String log;
+    @Value("${com.employee.first-message}")
+    private String firstMessage;
 
-    @GetMapping("/log")
-    public String getLog() {
-        return log;
+    @Value("${com.employee.second-message}")
+    private String secondMessage;
+
+    @Value("${com.employee.third-message}")
+    private String thirdMessage;
+
+    @GetMapping("/first-message")
+    public String getFirstMessage() {
+        return firstMessage;
+    }
+
+    @GetMapping("/second-message")
+    public String getSecondMessage() {
+        return secondMessage;
+    }
+
+    @GetMapping("/third-message")
+    public String getThirdMessage() {
+        return thirdMessage;
     }
 }

@@ -15,31 +15,31 @@ spec:
         app: employee-db
     spec:
       containers:
-      - name: employee-db
-        image: mysql:8.0.27
-        ports:
-        - containerPort: 3306
-        env:
-        - name: MYSQL_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: app-configmap
-              key: employee-schema
-        - name: MYSQL_USER
-          valueFrom: 
-            secretKeyRef:
-              name: app-secret
-              key: mysql-user
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: mysql-password
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: app-secret
-              key: mysql-root-password
+        - name: employee-db
+          image: quay.io/mimphiz2020/mysql:8.0.27
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: employee-configmap
+                  key: employee-schema
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: employee-secret
+                  key: mysql-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: employee-secret
+                  key: mysql-password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: employee-secret
+                  key: mysql-root-password
 ---
 apiVersion: v1
 kind: Service

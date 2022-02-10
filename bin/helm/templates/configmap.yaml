@@ -4,3 +4,4 @@ metadata:
   name: {{ .Values.configMapName }}
 data:
   employee-schema: {{ .Values.configMapValue.employeeSchema }}
+  third-message: {{ .Values.configMapValue.thirdMessage }}

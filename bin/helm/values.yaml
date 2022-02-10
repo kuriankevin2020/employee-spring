@@ -5,6 +5,7 @@
 configMapName: employee-configmap
 configMapValue:
   employeeSchema: employee_db
+  thirdMessage: "Helm ConfigMap Message"
 
 secretName: employee-secret
 secretValue:
@@ -17,7 +18,7 @@ employeeDbDeployment:
   app: employee-db
   replicas: 1
   containerName: employee-db
-  containerImage: mysql:8.0.27
+  containerImage: quay.io/mimphiz2020/mysql:8.0.27
   containerPort: 3306
 
 employeeDbService:
@@ -32,7 +33,7 @@ employeeAppDeployment:
   app: employee-app
   replicas: 2
   containerName: employee-app
-  containerImage: kuriankevin20/employee-app:1.0.0
+  containerImage: quay.io/mimphiz2020/employee-app:1.0.0
   containerPort: 8080
   envDbHost: *dbhost
 

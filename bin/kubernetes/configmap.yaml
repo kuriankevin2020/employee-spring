@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-configmap
+  name: employee-configmap
 data:
   employee-schema: employee_db
+  third-message: "Kubernetes ConfigMap Message"

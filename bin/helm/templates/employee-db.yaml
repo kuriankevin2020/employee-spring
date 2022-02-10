@@ -15,31 +15,31 @@ spec:
         app: {{ .Values.employeeDbDeployment.app }}
     spec:
       containers:
-      - name: {{ .Values.employeeDbDeployment.containerName }}
-        image: {{ .Values.employeeDbDeployment.containerImage }}
-        ports:
-        - containerPort: {{ .Values.employeeDbDeployment.containerPort }}
-        env:
-        - name: MYSQL_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: {{ .Values.configMapName }}
-              key: employee-schema
-        - name: MYSQL_USER
-          valueFrom: 
-            secretKeyRef:
-              name: {{ .Values.secretName }}
-              key: mysql-user
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.secretName }}
-              key: mysql-password
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.secretName }}
-              key: mysql-root-password
+        - name: {{ .Values.employeeDbDeployment.containerName }}
+          image: {{ .Values.employeeDbDeployment.containerImage }}
+          ports:
+            - containerPort: {{ .Values.employeeDbDeployment.containerPort }}
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: employee-schema
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: mysql-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: mysql-password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secretName }}
+                  key: mysql-root-password
 ---
 apiVersion: v1
 kind: Service
